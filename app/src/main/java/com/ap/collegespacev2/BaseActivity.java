@@ -11,15 +11,20 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.FrameLayout;
 import android.widget.ListView;
+
+import com.ap.collegespacev2.Adapter.DrawerListAdapter;
+import com.ap.collegespacev2.Helper.NavItem;
+
+import java.util.ArrayList;
 
 /**
  * Created by amaneureka on 23-Jan-16.
  */
 public class BaseActivity extends ActionBarActivity
 {
+    ArrayList<NavItem> mNavItems;
     ListView drawerList;
     DrawerLayout drawerLayout;
     ActionBarDrawerToggle drawerToggle;
@@ -85,8 +90,14 @@ public class BaseActivity extends ActionBarActivity
         }
 
         drawerList = (ListView) findViewById(R.id.left_drawer);
-        String[] menu = getResources().getStringArray(R.array.menu);
-        drawerList.setAdapter(new ArrayAdapter<String>(this, R.layout.row_drawer_menu, menu));
+        mNavItems =  new ArrayList<NavItem>();
+        mNavItems.add(new NavItem("Updates", R.drawable.ic_action_links));
+        mNavItems.add(new NavItem("NSITpedia", R.drawable.ic_author));
+        mNavItems.add(new NavItem("Bookmarks", R.drawable.ic_action_like));
+        mNavItems.add(new NavItem("TimeTable", R.drawable.ic_action_new_comment));
+        mNavItems.add(new NavItem("Settings", R.drawable.ic_action_settings));
+
+        drawerList.setAdapter(new DrawerListAdapter(this, mNavItems));
         drawerList.setOnItemClickListener(new DrawerItemClickListener());
         drawerList.setItemChecked(drawerId, true);
     }

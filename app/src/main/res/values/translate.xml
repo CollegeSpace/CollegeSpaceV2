@@ -4,11 +4,4 @@
     <string name="drawer_open">Menu open</string>
     <string name="drawer_close">Menu close</string>
 
-    <string-array name="menu">
-        <item>Latest Posts</item>
-        <item>Categories</item>
-        <item>Page</item>
-        <item>Bookmarks</item>
-        <item>Settings</item>
-    </string-array>
 </resources>
