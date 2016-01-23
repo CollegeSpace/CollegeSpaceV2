@@ -2,7 +2,10 @@
 <resources>
     <color name="primary">#4285f4</color>
     <color name="primaryDark">#3367d6</color>
-    <color name="dark_gray">#ff00aa</color>
-    <color name="txt">#000000</color>
+    <color name="primaryLight">#a3c0f4</color>
+    <color name="primarySelect">#4caf50</color>
+
+
+    <color name="txt">#fafafa</color>
     <color name="transparent">#00000000</color>
 </resources>

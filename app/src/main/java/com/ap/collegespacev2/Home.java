@@ -10,6 +10,6 @@ public class Home extends BaseActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home, 0);
 
-        getSupportActionBar().setTitle("Home --");
+        getSupportActionBar().setTitle("Home");
     }
 }

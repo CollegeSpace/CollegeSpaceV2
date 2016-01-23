@@ -7,7 +7,7 @@
     android:textAppearance="?android:attr/textAppearanceMedium"
     android:paddingLeft="16dp"
     android:paddingRight="16dp"
-    android:textColor="#ffffff"
+    android:textColor="@color/txt"
     android:background="@drawable/activated_background"
     android:minHeight="?android:attr/listPreferredItemHeight"
     android:layout_toRightOf="@+id/list_iv"/>

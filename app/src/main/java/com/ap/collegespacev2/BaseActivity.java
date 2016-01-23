@@ -49,7 +49,9 @@ public class BaseActivity extends ActionBarActivity
         if(((ViewGroup.MarginLayoutParams)contentLayout.getLayoutParams()).leftMargin == 240) {
             isTablet = true;
             supportInvalidateOptionsMenu();
-        }else {
+        }
+        else
+        {
             isTablet = false;
             supportInvalidateOptionsMenu();
         }

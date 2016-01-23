@@ -5,7 +5,6 @@
     android:id="@+id/toolbar"
     android:layout_width="match_parent"
     android:layout_height="?android:attr/actionBarSize"
-    android:minHeight="?android:attr/actionBarSize"
-    android:background="@color/primary"
+    android:background="@color/primaryDark"
     app:theme="@style/CustomToolbar"
     app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />

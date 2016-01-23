@@ -20,7 +20,6 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginLeft="0dp" >
-
         </FrameLayout>
 
 
@@ -32,7 +31,7 @@
             android:choiceMode="singleChoice"
             android:divider="@android:color/transparent"
             android:dividerHeight="0dp"
-            android:background="@color/dark_gray"/>
+            android:background="@color/primaryDark"/>
 
     </android.support.v4.widget.DrawerLayout>
 </LinearLayout>
