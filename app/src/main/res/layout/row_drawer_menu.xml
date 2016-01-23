@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/list_title"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center_vertical"
+    android:textAppearance="?android:attr/textAppearanceMedium"
+    android:paddingLeft="16dp"
+    android:paddingRight="16dp"
+    android:textColor="#ffffff"
+    android:background="@drawable/activated_background"
+    android:minHeight="?android:attr/listPreferredItemHeight"
+    android:layout_toRightOf="@+id/list_iv"/>
+
