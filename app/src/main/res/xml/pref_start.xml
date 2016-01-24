@@ -1,0 +1,13 @@
+<PreferenceScreen
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orderingFromXml="true">
+
+    <Preference
+        android:title="@string/setting_title_about"
+        android:icon="@drawable/ic_action_about">
+        <intent
+            android:action="pref_dis_info"
+            android:targetPackage="@string/pkg"
+            android:targetClass="com.ap.collegespacev2.Settings" />
+    </Preference>
+</PreferenceScreen>

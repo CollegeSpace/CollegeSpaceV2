@@ -1,5 +1,6 @@
 package com.ap.collegespacev2;
 
+import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.v4.view.GravityCompat;
@@ -7,6 +8,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
@@ -102,6 +104,34 @@ public class BaseActivity extends ActionBarActivity
         drawerList.setItemChecked(drawerId, true);
     }
 
+    public void setItemChecked() {
+        drawerList.setItemChecked(drawerId, true);
+    }
+
+    @Override
+    public void onResume()
+    {
+        super.onResume();
+        drawerList.setItemChecked(drawerId, true);
+    }
+
+    @Override
+    protected void onStop()
+    {
+        super.onStop();
+    }
+
+    @Override
+    protected void onDestroy()
+    {
+        super.onDestroy();
+    }
+
+    public void displayDrawerToggle(boolean ddt)
+    {
+        drawerToggle.setDrawerIndicatorEnabled(ddt);
+    }
+
     @Override
     protected void onPostCreate(Bundle savedInstanceState)
     {
@@ -131,10 +161,18 @@ public class BaseActivity extends ActionBarActivity
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int position, long id)
         {
-            /*switch (position)
+            switch (position)
             {
-
-            }*/
+                case 4://Settings
+                    Intent settings = new Intent(BaseActivity.this, Settings.class);
+                    startActivity(settings);
+                    if (!isTablet)
+                        drawerLayout.closeDrawer(drawerList);
+                    break;
+                default:
+                    Log.d("Drawer", "Unexpected Menu Item Selection.");
+                    break;
+            }
         }
     };
 }

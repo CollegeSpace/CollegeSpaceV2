@@ -1,0 +1,25 @@
+<PreferenceScreen
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:csns="http://schemas.android.com/apk/res/com.ap.collegespacev2"
+    android:orderingFromXml="true">
+    <PreferenceCategory
+        android:title="@string/setting_title_about">
+        <com.ap.collegespacev2.Helper.htmlDialog
+            android:title="@string/setting_label_changelog"
+            android:dialogLayout="@layout/dialog"
+            android:positiveButtonText="@string/btn_close"
+            android:negativeButtonText=""
+            csns:contentFile="file:///android_asset/changelog.html"/>
+        <com.ap.collegespacev2.Helper.htmlDialog
+            android:title="@string/setting_label_copyright"
+            android:dialogLayout="@layout/dialog"
+            android:positiveButtonText="@string/btn_close"
+            android:negativeButtonText=""
+            csns:contentFile="file:///android_asset/copyright.html"/>
+        <Preference
+            android:title="@string/setting_label_appversion"
+            android:enabled="false"
+            android:summary="@string/app_version" >
+        </Preference>
+    </PreferenceCategory>
+</PreferenceScreen>

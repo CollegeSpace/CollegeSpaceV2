@@ -1,0 +1,5 @@
+<resources>
+    <declare-styleable name="htmlDialog">
+        <attr name="contentFile" format="string"/>
+    </declare-styleable>
+</resources>

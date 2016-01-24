@@ -12,17 +12,19 @@ public class Home extends BaseActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home, 0);
 
-        getSupportActionBar().setTitle("Home");
+        getSupportActionBar().setTitle(R.string.updatesTitle);
     }
 
     @Override
-    public void onBackPressed() {
+    public void onBackPressed()
+    {
         new AlertDialog.Builder(this)
                 .setMessage("Are you sure you want to exit?")
                 .setPositiveButton("Yes", new DialogInterface.OnClickListener()
                 {
                     @Override
-                    public void onClick(DialogInterface dialog, int which) {
+                    public void onClick(DialogInterface dialog, int which)
+                    {
                         finish();
                     }
 

@@ -3,5 +3,17 @@
 
     <string name="drawer_open">Menu open</string>
     <string name="drawer_close">Menu close</string>
+    <string name="btn_close">Close</string>
+
+    <string name="updatesTitle">Updates</string>
+    <string name="nsitpediaTitle">NSITPedia</string>
+    <string name="bookmarksTitle">Bookmarks</string>
+    <string name="timetableTitle">TimeTable</string>
+    <string name="settingsTitle">Settings</string>
+
+    <string name="setting_title_about">About</string>
+    <string name="setting_label_appversion">Version</string>
+    <string name="setting_label_changelog">ChangeLog</string>
+    <string name="setting_label_copyright">Copyright</string>
 
 </resources>
