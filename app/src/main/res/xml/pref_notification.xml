@@ -1,0 +1,31 @@
+<PreferenceScreen
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orderingFromXml="true">
+    <PreferenceCategory
+        android:title="@string/setting_title_notification">
+        <CheckBoxPreference
+            android:defaultValue="true"
+            android:key="notify_me"
+            android:title="@string/setting_label_notify_me" />
+        <CheckBoxPreference
+            android:defaultValue="true"
+            android:dependency="notify_me"
+            android:key="notify_new_post"
+            android:title="@string/setting_label_notify_new_post" />
+        <CheckBoxPreference
+            android:defaultValue="true"
+            android:dependency="notify_me"
+            android:key="notify_update_post"
+            android:title="@string/setting_label_notify_update_post" />
+        <CheckBoxPreference
+            android:defaultValue="true"
+            android:dependency="notify_me"
+            android:key="notify_broadcast_message"
+            android:title="@string/setting_label_notify_broadcast" />
+        <CheckBoxPreference
+            android:defaultValue="true"
+            android:dependency="notify_me"
+            android:key="notify_broadcast_vibrate"
+            android:title="@string/setting_label_notify_vibrate" />
+    </PreferenceCategory>
+</PreferenceScreen>

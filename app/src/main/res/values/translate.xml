@@ -15,6 +15,13 @@
     <string name="setting_label_changelog">ChangeLog</string>
     <string name="setting_label_copyright">Copyright</string>
 
+    <string name="setting_title_notification">Notification</string>
+    <string name="setting_label_notify_me">Notifications</string>
+    <string name="setting_label_notify_new_post">New Posts</string>
+    <string name="setting_label_notify_update_post">Post Updates</string>
+    <string name="setting_label_notify_broadcast">Broadcast Message</string>
+    <string name="setting_label_notify_vibrate">Vibrate</string>
+
     <string name="dialog_inernet_title">No Internet connection!</string>
     <string name="dialog_internet_content">Can\'t connect to the Internet. Please check connection!</string>
 

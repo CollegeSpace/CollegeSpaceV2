@@ -1,7 +1,14 @@
 <PreferenceScreen
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:orderingFromXml="true">
-
+    <Preference
+        android:title="@string/setting_title_notification"
+        android:icon="@drawable/ic_action_volume_on">
+        <intent
+            android:action="pref_dis_notification"
+            android:targetPackage="@string/pkg"
+            android:targetClass="com.ap.collegespacev2.Settings" />
+    </Preference>
     <Preference
         android:title="@string/setting_title_about"
         android:icon="@drawable/ic_action_about">

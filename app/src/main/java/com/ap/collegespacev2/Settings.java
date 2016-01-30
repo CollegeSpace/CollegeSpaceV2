@@ -3,6 +3,7 @@ package com.ap.collegespacev2;
 import android.os.Bundle;
 
 import com.ap.collegespacev2.Setting.InfoFragment;
+import com.ap.collegespacev2.Setting.NotificationFragment;
 import com.ap.collegespacev2.Setting.StartFragment;
 
 /**
@@ -22,10 +23,20 @@ public class Settings extends BaseActivity
 
         if (action != null && action.equals("pref_dis_info"))
         {
+            //About Button
             displayDrawerToggle(false);
             getFragmentManager()
                     .beginTransaction()
                     .replace(R.id.content_frame, new InfoFragment())
+                    .commit();
+        }
+        else if (action != null && action.equals("pref_dis_notification"))
+        {
+            //Notification Setting Button
+            displayDrawerToggle(false);
+            getFragmentManager()
+                    .beginTransaction()
+                    .replace(R.id.content_frame, new NotificationFragment())
                     .commit();
         }
         else
