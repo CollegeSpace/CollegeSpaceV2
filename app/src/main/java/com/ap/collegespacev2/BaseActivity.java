@@ -163,6 +163,12 @@ public class BaseActivity extends ActionBarActivity
         {
             switch (position)
             {
+                case 0://Updates
+                    Intent updates = new Intent(BaseActivity.this, Home.class);
+                    startActivity(updates);
+                    if (!isTablet)
+                        drawerLayout.closeDrawer(drawerList);
+                    break;
                 case 4://NSITulator
                     Intent nsitulator = new Intent(BaseActivity.this, NSITulator.class);
                     startActivity(nsitulator);

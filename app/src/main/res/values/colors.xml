@@ -4,8 +4,13 @@
     <color name="primaryDark">#3367d6</color>
     <color name="primaryLight">#a3c0f4</color>
     <color name="primarySelect">#4caf50</color>
-
+    <color name="selectItem">#ffc107</color>
 
     <color name="txt">#fafafa</color>
     <color name="transparent">#00000000</color>
+
+    <item name="swipe_c1" type="color">#ffEEB269</item>
+    <item name="swipe_c2" type="color">#ff4DB19E</item>
+    <item name="swipe_c3" type="color">#ffDC5753</item>
+    <item name="swipe_c4" type="color">#ff354D59</item>
 </resources>

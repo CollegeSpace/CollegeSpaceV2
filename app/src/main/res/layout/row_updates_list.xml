@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/shadow"
+    android:layout_marginBottom="1dp">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:background="@color/txt">
+        <TextView
+            android:id="@+id/updates_post_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Post->Title()"
+            android:textSize="16sp"/>
+    </RelativeLayout>
+</RelativeLayout>
