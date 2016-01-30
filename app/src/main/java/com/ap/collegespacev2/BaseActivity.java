@@ -76,7 +76,7 @@ public class BaseActivity extends ActionBarActivity
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
             getSupportActionBar().setHomeButtonEnabled(true);
             drawerLayout.setDrawerShadow(R.drawable.drawer_shadow, GravityCompat.START);
-            drawerToggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.drawer_open, R.string.drawer_close)
+            drawerToggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.empty, R.string.empty)
             {
                 public void onDrawerClosed(View view) {
                     supportInvalidateOptionsMenu();

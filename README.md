@@ -7,6 +7,7 @@ Android Platform target CollegeSpacev2 App.
 2. For Developer
   * Android Studio 2.0
   * API 16 (**21 Recommended**)
+  * Google Play Services
 
 ### TODO
 * Updates Fetch
