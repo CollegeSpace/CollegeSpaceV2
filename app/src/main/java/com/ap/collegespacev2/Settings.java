@@ -14,7 +14,7 @@ public class Settings extends BaseActivity
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_settings, 4);
+        setContentView(R.layout.activity_settings, 5);
 
         getSupportActionBar().setTitle(getString(R.string.settingsTitle));
 

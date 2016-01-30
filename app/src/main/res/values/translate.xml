@@ -8,6 +8,7 @@
     <string name="bookmarksTitle">Bookmarks</string>
     <string name="timetableTitle">TimeTable</string>
     <string name="settingsTitle">Settings</string>
+    <string name="nsitulatorTitle">NSITulator</string>
 
     <string name="setting_title_about">About</string>
     <string name="setting_label_appversion">Version</string>

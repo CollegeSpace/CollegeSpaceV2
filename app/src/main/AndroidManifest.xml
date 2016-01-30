@@ -26,6 +26,10 @@
             android:label="@string/app_name">
         </activity>
         <activity
+            android:name="com.ap.collegespacev2.NSITulator"
+            android:label="@string/app_name">
+        </activity>
+        <activity
             android:name="com.ap.collegespacev2.BaseActivity"
             android:label="@string/app_name">
         </activity>

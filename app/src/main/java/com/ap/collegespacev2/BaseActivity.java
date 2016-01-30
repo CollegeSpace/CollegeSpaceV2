@@ -86,7 +86,6 @@ public class BaseActivity extends ActionBarActivity
                     supportInvalidateOptionsMenu();
                 }
             };
-
             drawerLayout.setDrawerListener(drawerToggle);
             drawerToggle.setDrawerIndicatorEnabled(true);
         }
@@ -97,6 +96,7 @@ public class BaseActivity extends ActionBarActivity
         mNavItems.add(new NavItem("NSITpedia", R.drawable.ic_author));
         mNavItems.add(new NavItem("Bookmarks", R.drawable.ic_action_like));
         mNavItems.add(new NavItem("TimeTable", R.drawable.ic_action_new_comment));
+        mNavItems.add(new NavItem("NSITulator", R.drawable.ic_action_like));
         mNavItems.add(new NavItem("Settings", R.drawable.ic_action_settings));
 
         drawerList.setAdapter(new DrawerListAdapter(this, mNavItems));
@@ -163,7 +163,13 @@ public class BaseActivity extends ActionBarActivity
         {
             switch (position)
             {
-                case 4://Settings
+                case 4://NSITulator
+                    Intent nsitulator = new Intent(BaseActivity.this, NSITulator.class);
+                    startActivity(nsitulator);
+                    if (!isTablet)
+                        drawerLayout.closeDrawer(drawerList);
+                    break;
+                case 5://Settings
                     Intent settings = new Intent(BaseActivity.this, Settings.class);
                     startActivity(settings);
                     if (!isTablet)
