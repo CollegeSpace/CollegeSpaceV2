@@ -14,4 +14,23 @@
     <string name="wp_plugin_link">link</string>
     <string name="wp_plugin_date">date</string>
     <string name="wp_plugin_modified">modified</string>
+
+    <string-array name="array_branch">
+        <item>ECE</item>
+        <item>COE</item>
+        <item>IT</item>
+        <item>MPAE</item>
+        <item>BT</item>
+    </string-array>
+
+    <string-array name="array_semester">
+        <item>I</item>
+        <item>II</item>
+        <item>III</item>
+        <item>IV</item>
+        <item>V</item>
+        <item>VI</item>
+        <item>VII</item>
+        <item>VIII</item>
+    </string-array>
 </resources>

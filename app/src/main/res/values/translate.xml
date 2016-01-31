@@ -2,6 +2,8 @@
 <resources translatable="false">
 
     <string name="empty"></string>
+    <string name="lbl_semester">Semester</string>
+    <string name="lbl_branch">Branch</string>
 
     <string name="updatesTitle">Updates</string>
     <string name="nsitpediaTitle">NSITPedia</string>
@@ -33,5 +35,6 @@
     <string name="btn_cancel">Cancel</string>
     <string name="btn_send">send it!</string>
     <string name="btn_more">load more</string>
+    <string name="btn_done">Done</string>
 
 </resources>

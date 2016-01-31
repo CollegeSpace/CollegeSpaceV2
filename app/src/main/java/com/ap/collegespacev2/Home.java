@@ -76,6 +76,19 @@ public class Home extends BaseActivity
                     swipeLayout.setEnabled(false);
             }
         });
+
+        if (isCon())
+        {
+            swipeLayout.post(new Runnable() {
+                @Override
+                public void run() {
+                    swipeLayout.setRefreshing(true);
+                    new DownloadPostsTask().execute(plugin_url);
+                }
+            });
+        }
+        else
+            cd.makeAlert();
     }
 
     private Boolean isCon()
@@ -103,9 +116,9 @@ public class Home extends BaseActivity
         @Override
         protected void onPostExecute(Void result)
         {
-            swipeLayout.setRefreshing(false);
             if (InvalidateUpdatesList)
                 UpdateListPosts();
+            swipeLayout.setRefreshing(false);
         }
 
         @Override

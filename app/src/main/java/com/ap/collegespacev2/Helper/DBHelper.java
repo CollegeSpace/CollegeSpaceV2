@@ -87,12 +87,12 @@ public class DBHelper extends SQLiteOpenHelper
     public ArrayList<UpdatesItem> UpdatesGetAllItemsIDLessThan(Integer aID)
     {
         return UpdatesGetAllItemsUtil(aID, "SELECT * FROM " + TABLE_UPDATES_NAME
-                        + " WHERE " + TABLE_UPDATES_KEY + "<" + Integer.toString(aID) + " LIMIT 10");
+                        + " WHERE " + TABLE_UPDATES_KEY + "<" + Integer.toString(aID) + " ORDER BY " + TABLE_UPDATES_KEY + " DESC LIMIT 10");
     }
 
     public ArrayList<UpdatesItem> UpdatesGetAllItemsID()
     {
-        return UpdatesGetAllItemsUtil(0, "SELECT * FROM " + TABLE_UPDATES_NAME + " LIMIT 10");
+        return UpdatesGetAllItemsUtil(0, "SELECT * FROM " + TABLE_UPDATES_NAME + " ORDER BY " + TABLE_UPDATES_KEY + " DESC LIMIT 10");
     }
 
     private ArrayList<UpdatesItem> UpdatesGetAllItemsUtil(Integer aID, String Query)

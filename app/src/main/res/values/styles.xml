@@ -23,4 +23,13 @@
         <item name="spinBars">true</item>
         <item name="color">@color/txt</item>
     </style>
+
+    <style name="spinner_style" parent="@android:style/Theme.Holo">
+        <item name="android:paddingLeft">10dp</item>
+        <item name="android:paddingRight">10dp</item>
+        <item name="android:paddingTop">5dp</item>
+        <item name="android:paddingBottom">5dp</item>
+        <item name="android:layout_width">140dp</item>
+        <item name="android:layout_height">50dp</item>
+    </style>
 </resources>

@@ -12,13 +12,14 @@
             android:id="@+id/posts_list_updates"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_marginStart="10dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginStart="5dp"
             android:divider="@android:color/transparent"
-            android:dividerHeight="10.0sp"
+            android:dividerHeight="0dp"
             android:focusable="false"
             android:paddingTop="5dp"
             android:scrollbarStyle="outsideInset"
+            android:listSelector="@android:color/transparent"
             android:visibility="gone"/>
     </RelativeLayout>
 </android.support.v4.widget.SwipeRefreshLayout>
