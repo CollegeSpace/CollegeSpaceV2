@@ -107,9 +107,14 @@ public class Home extends BaseActivity
             @Override
             public void onItemClick(AdapterView<?> a, View v, int position, long id)
             {
-                UpdatesItem posts = mUpdatesAdapter.getItem(position);
+                UpdatesItem post = mUpdatesAdapter.getItem(position);
                 Intent intent = new Intent(Home.this, PostDetails.class);
-                intent.putExtra("post_id", Integer.toString(posts.getID()));
+                intent.putExtra("post_title_bar", "Updates");
+                intent.putExtra("post_id", Integer.toString(post.getID()));
+                intent.putExtra("post_title", post.getTitle());
+                intent.putExtra("post_content", post.getContent());
+                intent.putExtra("post_url", post.getLink());
+                intent.putExtra("post_date", post.getDate());
                 startActivity(intent);
             }
         });

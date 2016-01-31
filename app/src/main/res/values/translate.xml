@@ -37,7 +37,9 @@
     <string name="btn_more">load more</string>
     <string name="btn_done">Done</string>
 
+    <string name="action_share">Share it!</string>
     <string name="msg_fav_added">Added to Bookmark!</string>
     <string name="msg_fav_removed">Removed from Bookmark!</string>
 
+    <string name="secret_msg">I HATE YOU JAVA -- AP (C# Fan)\nI HATE YOU XML -- AP\nI HATE YOU ANDROID -- AP\nI HATE YOU AP -- God\nI HATE YOU TOO B-)\nI HATE THIS WORLD -- God (._.\")\nKisne bola tha banane ko? :p -- AP</string>
 </resources>

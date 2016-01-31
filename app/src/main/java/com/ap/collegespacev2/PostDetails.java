@@ -1,8 +1,11 @@
 package com.ap.collegespacev2;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
+import android.text.Html;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -14,6 +17,11 @@ import android.widget.Toast;
 public class PostDetails extends ActionBarActivity
 {
     String aID;
+    String aContent;
+    String aUrl;
+    String aDate;
+    String aTitle;
+    String aActionBar;
     boolean isPostFav = false;
 
     @Override
@@ -22,11 +30,16 @@ public class PostDetails extends ActionBarActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_post);
 
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setTitle("");
-        getSupportActionBar().setHomeButtonEnabled(true);
-
+        aActionBar = getIntent().getStringExtra("post_title_bar");
+        aTitle = getIntent().getStringExtra("post_title");
         aID = getIntent().getStringExtra("post_id");
+        aContent = getIntent().getStringExtra("post_content");
+        aUrl = getIntent().getStringExtra("post_url");
+        aDate = getIntent().getStringExtra("post_date");
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setTitle(aActionBar);
+        getSupportActionBar().setHomeButtonEnabled(true);
     }
 
     @Override
@@ -60,7 +73,12 @@ public class PostDetails extends ActionBarActivity
                 onBackPressed();
                 return true;
             case R.id.menu_share:
+                shareContent();
+                return true;
             case R.id.menu_web:
+                Intent i = new Intent(Intent.ACTION_VIEW);
+                i.setData(Uri.parse(aUrl));
+                startActivity(i);
                 return true;
             case R.id.menu_fav:
                 isPostFav = false;
@@ -108,5 +126,14 @@ public class PostDetails extends ActionBarActivity
         editor.putString("Favs", editfav);
         editor.commit();
         Toast.makeText(this, getString(R.string.msg_fav_removed) ,Toast.LENGTH_SHORT).show();
+    }
+
+    private void shareContent()
+    {
+        Intent sendIntent = new Intent();
+        sendIntent.setAction(Intent.ACTION_SEND);
+        sendIntent.putExtra(Intent.EXTRA_TEXT, Html.fromHtml(aTitle) + "\n" + aUrl);
+        sendIntent.setType("text/plain");
+        startActivity(Intent.createChooser(sendIntent, getString(R.string.action_share)));
     }
 }
