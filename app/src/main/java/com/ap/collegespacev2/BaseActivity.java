@@ -161,6 +161,13 @@ public class BaseActivity extends ActionBarActivity
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int position, long id)
         {
+            if (drawerId == position)
+            {
+                if (!isTablet)
+                    drawerLayout.closeDrawer(drawerList);
+                return;
+            }
+
             switch (position)
             {
                 case 0://Updates

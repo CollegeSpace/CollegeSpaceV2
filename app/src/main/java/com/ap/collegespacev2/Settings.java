@@ -20,11 +20,11 @@ public class Settings extends BaseActivity
         getSupportActionBar().setTitle(getString(R.string.settingsTitle));
 
         String action = getIntent().getAction();
+        displayDrawerToggle(false);
 
         if (action != null && action.equals("pref_dis_info"))
         {
             //About Button
-            displayDrawerToggle(false);
             getFragmentManager()
                     .beginTransaction()
                     .replace(R.id.content_frame, new InfoFragment())
@@ -33,7 +33,6 @@ public class Settings extends BaseActivity
         else if (action != null && action.equals("pref_dis_notification"))
         {
             //Notification Setting Button
-            displayDrawerToggle(false);
             getFragmentManager()
                     .beginTransaction()
                     .replace(R.id.content_frame, new NotificationFragment())
@@ -41,7 +40,6 @@ public class Settings extends BaseActivity
         }
         else
         {
-            displayDrawerToggle(true);
             getFragmentManager()
                     .beginTransaction()
                     .replace(R.id.content_frame, new StartFragment())
