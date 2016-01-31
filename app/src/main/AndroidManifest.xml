@@ -45,6 +45,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name="com.ap.collegespacev2.PostDetails"
+            android:theme="@style/ThemeFading"
+            android:configChanges="keyboardHidden|orientation|screenSize">
+        </activity>
 
         <receiver
             android:name="com.ap.collegespacev2.Gcm.GcmBroadcastReceiver"

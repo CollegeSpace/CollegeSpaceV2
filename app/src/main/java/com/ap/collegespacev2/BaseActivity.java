@@ -53,7 +53,8 @@ public class BaseActivity extends ActionBarActivity
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setDisplayShowTitleEnabled(true);
 
-        if(((ViewGroup.MarginLayoutParams)contentLayout.getLayoutParams()).leftMargin == 240) {
+        if(((ViewGroup.MarginLayoutParams)contentLayout.getLayoutParams()).leftMargin == 240)
+        {
             isTablet = true;
             supportInvalidateOptionsMenu();
         }

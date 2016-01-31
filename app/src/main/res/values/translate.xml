@@ -37,4 +37,7 @@
     <string name="btn_more">load more</string>
     <string name="btn_done">Done</string>
 
+    <string name="msg_fav_added">Added to Bookmark!</string>
+    <string name="msg_fav_removed">Removed from Bookmark!</string>
+
 </resources>

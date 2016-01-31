@@ -1,5 +1,6 @@
 package com.ap.collegespacev2;
 
+import android.content.Intent;
 import android.opengl.Visibility;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -7,6 +8,7 @@ import android.support.v4.widget.SwipeRefreshLayout;
 import android.util.Log;
 import android.view.View;
 import android.widget.AbsListView;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.ap.collegespacev2.Adapter.PostsListAdapter;
@@ -57,8 +59,6 @@ public class Home extends BaseActivity
                     InvalidateUpdatesList = true;
                     new DownloadPostsTask().execute(plugin_url);
                 }
-                else
-                    cd.makeAlert();
             }
         });
 
@@ -77,6 +77,7 @@ public class Home extends BaseActivity
             }
         });
 
+        UpdateListPosts();
         if (isCon())
         {
             swipeLayout.post(new Runnable() {
@@ -87,8 +88,6 @@ public class Home extends BaseActivity
                 }
             });
         }
-        else
-            cd.makeAlert();
     }
 
     private Boolean isCon()
@@ -102,6 +101,18 @@ public class Home extends BaseActivity
         mUpdatesAdapter = new PostsListAdapter(this, mDBHelper.UpdatesGetAllItemsID());
         mUpdatesListView.setVisibility(View.VISIBLE);
         mUpdatesListView.setAdapter(mUpdatesAdapter);
+
+        mUpdatesListView.setOnItemClickListener(new AdapterView.OnItemClickListener()
+        {
+            @Override
+            public void onItemClick(AdapterView<?> a, View v, int position, long id)
+            {
+                UpdatesItem posts = mUpdatesAdapter.getItem(position);
+                Intent intent = new Intent(Home.this, PostDetails.class);
+                intent.putExtra("post_id", Integer.toString(posts.getID()));
+                startActivity(intent);
+            }
+        });
     }
 
     protected class DownloadPostsTask extends AsyncTask<String, Integer, Void>
