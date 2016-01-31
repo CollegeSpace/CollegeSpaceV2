@@ -15,18 +15,10 @@
         <item name="windowActionBarOverlay">true</item>
         <item name="windowActionBar">true</item>
         <item name="android:windowContentOverlay">@null</item>
-        <item name="actionBarStyle">@style/ActionBarStyle</item>
         <!-- The new Color definitions -->
         <item name="colorPrimary">@color/primary</item>
         <item name="colorPrimaryDark">@color/primaryDark</item>
         <item name="colorAccent">@color/primary</item>
-    </style>
-
-    <style name="ActionBarStyle" parent="Theme.AppCompat.Light.DarkActionBar">
-        <item name="android:textColorPrimary">@color/txt</item>
-        <item name="android:textColorPrimaryInverse">@color/txt</item>
-        <item name="android:textColorSecondary">@color/txt</item>
-        <item name="actionMenuTextColor">@color/txt</item>
     </style>
 
     <style name="CustomToolbar" parent="Theme.AppCompat">

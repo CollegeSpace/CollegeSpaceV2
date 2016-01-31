@@ -22,10 +22,6 @@ public class PostDetails extends ActionBarActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_post);
 
-        //getSupportFragmentManager().beginTransaction()
-        //        .add(R.id.postframe, new DetailsFragment())
-        //        .commit();
-
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle("");
         getSupportActionBar().setHomeButtonEnabled(true);
