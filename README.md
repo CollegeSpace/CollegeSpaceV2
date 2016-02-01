@@ -10,6 +10,8 @@ Android Platform target CollegeSpacev2 App.
   * Google Play Services
 
 ### TODO
+* Put a loader in beginning
+* Add share button for app in drawer
 * Updates Fetch
 * NSITPedia Integration
 * Notification System
