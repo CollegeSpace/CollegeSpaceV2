@@ -1,6 +1,8 @@
 package com.ap.collegespacev2;
 
 import android.content.Intent;
+import android.content.res.AssetManager;
+import android.content.res.Resources;
 import android.opengl.Visibility;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -20,6 +22,11 @@ import com.ap.collegespacev2.Helper.jsonParser;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+
 public class Home extends BaseActivity
 {
     DBHelper mDBHelper;
@@ -27,6 +34,8 @@ public class Home extends BaseActivity
     SwipeRefreshLayout swipeLayout;
     PostsListAdapter mUpdatesAdapter;
     ListView mUpdatesListView;
+    AssetManager mAssetManager;
+    Resources mResources;
 
     boolean InvalidateUpdatesList;
     Integer CurrentPage = 0;
@@ -41,6 +50,8 @@ public class Home extends BaseActivity
         getSupportActionBar().setTitle(R.string.updatesTitle);
         mDBHelper = new DBHelper(this);
         mUpdatesListView = (ListView)findViewById(R.id.posts_list_updates);
+        mAssetManager = getAssets();
+        mResources = getResources();
 
         /* SwipeRefreshLayout Settings */
         swipeLayout = (SwipeRefreshLayout)findViewById(R.id.swipe_container);
@@ -147,16 +158,18 @@ public class Home extends BaseActivity
                 JSONArray json = jParser.getJSONFromUrl(download_url);
                 JSONObject feedObj;
                 UpdatesItem aItem;
+
+                String content = getStringFromInputStream(mAssetManager.open("post_template.html"));
                 for (int index = 0; index < json.length(); index++)
                 {
                     feedObj = json.getJSONObject(index);
                     aItem = new UpdatesItem(
-                            feedObj.getInt(getResources().getString(R.string.wp_plugin_id)),
-                            feedObj.getString(getResources().getString(R.string.wp_plugin_title)),
-                            feedObj.getString(getResources().getString(R.string.wp_plugin_content)),
-                            feedObj.getString(getResources().getString(R.string.wp_plugin_link)),
-                            feedObj.getString(getResources().getString(R.string.wp_plugin_date)),
-                            feedObj.getString(getResources().getString(R.string.wp_plugin_modified))
+                            feedObj.getInt(mResources.getString(R.string.wp_plugin_id)),
+                            feedObj.getString(mResources.getString(R.string.wp_plugin_title)),
+                            content + feedObj.getString(mResources.getString(R.string.wp_plugin_content)),
+                            feedObj.getString(mResources.getString(R.string.wp_plugin_link)),
+                            feedObj.getString(mResources.getString(R.string.wp_plugin_date)),
+                            feedObj.getString(mResources.getString(R.string.wp_plugin_modified))
                     );
                     mDBHelper.UpdatesAddItemIfNotExist(aItem);
                 }
@@ -165,5 +178,31 @@ public class Home extends BaseActivity
             { Log.e("@json_exception", ex.getMessage()); }
             return null;
         }
+    }
+
+    private static String getStringFromInputStream(InputStream is) {
+        BufferedReader br = null;
+        StringBuilder sb = new StringBuilder();
+
+        String line;
+        try {
+
+            br = new BufferedReader(new InputStreamReader(is));
+            while ((line = br.readLine()) != null) {
+                sb.append(line);
+            }
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            if (br != null) {
+                try {
+                    br.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        return sb.toString();
     }
 }

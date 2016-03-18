@@ -12,7 +12,7 @@
     <item name="swipe_c1" type="color">#EEB269</item>
     <item name="swipe_c2" type="color">#4DB19E</item>
     <item name="swipe_c3" type="color">#DC5753</item>
-    <item name="swipe_c4" type="color">#354D59</item>
+    <item name="swipe_c4" type="color">#EEEEEE</item>
 
     <item name="btn_red" type="color">#E53935</item>
 </resources>

@@ -7,12 +7,15 @@ import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.text.Html;
 import android.text.format.DateUtils;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.webkit.WebView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.ap.collegespacev2.Helper.PostViewer;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -63,7 +66,12 @@ public class PostDetails extends ActionBarActivity
         //Load Data
         ((TextView)findViewById(R.id.post_date)).setText(aDate);
         ((TextView)findViewById(R.id.post_title)).setText(aTitle);
-        //((WebView)findViewById(R.id.post_content)).loadData(aContent, "text/html", "utf-8");
+
+        //Load Post Content
+        WebView canvas = (WebView)findViewById(R.id.post_content);
+        canvas.setWebViewClient(new PostViewer());
+        canvas.setBackgroundColor(0xffeeeeee);//Android's default background color
+        canvas.loadData(aContent, "text/html", "utf-8");
     }
 
     @Override
