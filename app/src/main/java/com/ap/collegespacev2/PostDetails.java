@@ -6,10 +6,18 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.text.Html;
+import android.text.format.DateUtils;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.webkit.WebView;
+import android.widget.TextView;
 import android.widget.Toast;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
 
 /**
  * Created by amaneureka on 31-Jan-16.
@@ -40,6 +48,22 @@ public class PostDetails extends ActionBarActivity
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle(aActionBar);
         getSupportActionBar().setHomeButtonEnabled(true);
+
+        //Relative date
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss", Locale.US);
+        try
+        {
+            Date ddate = formatter.parse(aDate);
+            long millis = ddate.getTime();
+            aDate = DateUtils.getRelativeTimeSpanString(millis, System.currentTimeMillis(),
+                    DateUtils.SECOND_IN_MILLIS).toString();
+        }
+        catch(ParseException e) { }
+
+        //Load Data
+        ((TextView)findViewById(R.id.post_date)).setText(aDate);
+        ((TextView)findViewById(R.id.post_title)).setText(aTitle);
+        //((WebView)findViewById(R.id.post_content)).loadData(aContent, "text/html", "utf-8");
     }
 
     @Override
