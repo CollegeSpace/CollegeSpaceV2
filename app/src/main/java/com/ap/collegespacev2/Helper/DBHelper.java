@@ -2,6 +2,7 @@ package com.ap.collegespacev2.Helper;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
@@ -57,6 +58,15 @@ public class DBHelper extends SQLiteOpenHelper
                 + " WHERE " + TABLE_UPDATES_KEY + "=" + Integer.toString(id), null);
     }
 
+    public UpdatesItem getUpdateItemFromID(Integer id)
+    {
+        Cursor csr = getUpdatesFromID(id);
+        csr.moveToFirst();
+        UpdatesItem result = UpdateItemUtil(csr);
+        csr.close();
+        return  result;
+    }
+
     public boolean UpdatesIDExist(Integer id)
     {
         Cursor result = getUpdatesFromID(id);
@@ -86,16 +96,28 @@ public class DBHelper extends SQLiteOpenHelper
 
     public ArrayList<UpdatesItem> UpdatesGetAllItemsIDLessThan(Integer aID)
     {
-        return UpdatesGetAllItemsUtil(aID, "SELECT * FROM " + TABLE_UPDATES_NAME
+        return UpdatesGetAllItemsUtil("SELECT * FROM " + TABLE_UPDATES_NAME
                         + " WHERE " + TABLE_UPDATES_KEY + "<" + Integer.toString(aID) + " ORDER BY " + TABLE_UPDATES_KEY + " DESC LIMIT 10");
     }
 
     public ArrayList<UpdatesItem> UpdatesGetAllItemsID()
     {
-        return UpdatesGetAllItemsUtil(0, "SELECT * FROM " + TABLE_UPDATES_NAME + " ORDER BY " + TABLE_UPDATES_KEY + " DESC LIMIT 10");
+        return UpdatesGetAllItemsUtil("SELECT * FROM " + TABLE_UPDATES_NAME + " ORDER BY " + TABLE_UPDATES_KEY + " DESC LIMIT 10");
     }
 
-    private ArrayList<UpdatesItem> UpdatesGetAllItemsUtil(Integer aID, String Query)
+    private UpdatesItem UpdateItemUtil(Cursor query_res)
+    {
+        return new UpdatesItem(
+                query_res.getInt(query_res.getColumnIndex(TABLE_UPDATES_KEY)),
+                query_res.getString(query_res.getColumnIndex(TABLE_UPDATES_TITLE)),
+                query_res.getString(query_res.getColumnIndex(TABLE_UPDATES_CONTENT)),
+                query_res.getString(query_res.getColumnIndex(TABLE_UPDATES_LINK)),
+                query_res.getString(query_res.getColumnIndex(TABLE_UPDATES_DATE)),
+                query_res.getString(query_res.getColumnIndex(TABLE_UPDATES_MODIFIED))
+        );
+    }
+
+    private ArrayList<UpdatesItem> UpdatesGetAllItemsUtil(String Query)
     {
         ArrayList<UpdatesItem> resArray = new ArrayList<UpdatesItem>();
         SQLiteDatabase db = this.getReadableDatabase();
@@ -106,14 +128,7 @@ public class DBHelper extends SQLiteOpenHelper
         UpdatesItem aItem;
         while(!query_res.isAfterLast())
         {
-            aItem = new UpdatesItem(
-                    query_res.getInt(query_res.getColumnIndex(TABLE_UPDATES_KEY)),
-                    query_res.getString(query_res.getColumnIndex(TABLE_UPDATES_TITLE)),
-                    query_res.getString(query_res.getColumnIndex(TABLE_UPDATES_CONTENT)),
-                    query_res.getString(query_res.getColumnIndex(TABLE_UPDATES_LINK)),
-                    query_res.getString(query_res.getColumnIndex(TABLE_UPDATES_DATE)),
-                    query_res.getString(query_res.getColumnIndex(TABLE_UPDATES_MODIFIED))
-            );
+            aItem = UpdateItemUtil(query_res);
             resArray.add(aItem);
             query_res.moveToNext();
         }

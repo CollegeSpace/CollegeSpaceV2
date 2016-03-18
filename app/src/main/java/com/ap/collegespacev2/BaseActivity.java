@@ -169,30 +169,23 @@ public class BaseActivity extends ActionBarActivity
                 return;
             }
 
+            Intent toStart = null;
             switch (position)
             {
-                case 0://Updates
-                    Intent updates = new Intent(BaseActivity.this, Home.class);
-                    startActivity(updates);
-                    if (!isTablet)
-                        drawerLayout.closeDrawer(drawerList);
-                    break;
-                case 4://NSITulator
-                    Intent nsitulator = new Intent(BaseActivity.this, NSITulator.class);
-                    startActivity(nsitulator);
-                    if (!isTablet)
-                        drawerLayout.closeDrawer(drawerList);
-                    break;
-                case 5://Settings
-                    Intent settings = new Intent(BaseActivity.this, Settings.class);
-                    startActivity(settings);
-                    if (!isTablet)
-                        drawerLayout.closeDrawer(drawerList);
-                    break;
+                case 0: toStart = new Intent(BaseActivity.this, Home.class);        break;
+                case 2: toStart = new Intent(BaseActivity.this, Bookmarks.class);   break;
+                case 4: toStart = new Intent(BaseActivity.this, NSITulator.class);  break;
+                case 5: toStart = new Intent(BaseActivity.this, Settings.class);    break;
                 default:
                     Log.d("Drawer", "Unexpected Menu Item Selection.");
                     break;
             }
+
+            if (toStart != null)
+                startActivity(toStart);
+
+            if (!isTablet)
+                drawerLayout.closeDrawer(drawerList);
         }
     };
 }

@@ -31,7 +31,7 @@ public class Home extends BaseActivity
 {
     DBHelper mDBHelper;
     ConnectionDetector cd;
-    SwipeRefreshLayout swipeLayout;
+    SwipeRefreshLayout mSwipeRefreshLayout;
     PostsListAdapter mUpdatesAdapter;
     ListView mUpdatesListView;
     AssetManager mAssetManager;
@@ -54,13 +54,13 @@ public class Home extends BaseActivity
         mResources = getResources();
 
         /* SwipeRefreshLayout Settings */
-        swipeLayout = (SwipeRefreshLayout)findViewById(R.id.swipe_container);
-        swipeLayout.setColorSchemeResources(
+        mSwipeRefreshLayout = (SwipeRefreshLayout)findViewById(R.id.swipe_container);
+        mSwipeRefreshLayout.setColorSchemeResources(
                 R.color.swipe_c1,
                 R.color.swipe_c2,
                 R.color.swipe_c3,
                 R.color.swipe_c4);
-        swipeLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener()
+        mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener()
         {
             @Override
             public void onRefresh()
@@ -82,19 +82,19 @@ public class Home extends BaseActivity
             public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount)
             {
                 if(firstVisibleItem == 0)
-                    swipeLayout.setEnabled(true);
+                    mSwipeRefreshLayout.setEnabled(true);
                 else
-                    swipeLayout.setEnabled(false);
+                    mSwipeRefreshLayout.setEnabled(false);
             }
         });
 
         UpdateListPosts();
         if (isCon())
         {
-            swipeLayout.post(new Runnable() {
+            mSwipeRefreshLayout.post(new Runnable() {
                 @Override
                 public void run() {
-                    swipeLayout.setRefreshing(true);
+                    mSwipeRefreshLayout.setRefreshing(true);
                     new DownloadPostsTask().execute(plugin_url);
                 }
             });
@@ -136,8 +136,8 @@ public class Home extends BaseActivity
         @Override
         protected void onPreExecute()
         {
-            swipeLayout.setEnabled(true);
-            swipeLayout.setRefreshing(true);
+            mSwipeRefreshLayout.setEnabled(true);
+            mSwipeRefreshLayout.setRefreshing(true);
         }
 
         @Override
@@ -145,7 +145,7 @@ public class Home extends BaseActivity
         {
             if (InvalidateUpdatesList)
                 UpdateListPosts();
-            swipeLayout.setRefreshing(false);
+            mSwipeRefreshLayout.setRefreshing(false);
         }
 
         @Override

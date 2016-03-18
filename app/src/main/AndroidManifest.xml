@@ -30,6 +30,10 @@
             android:label="@string/app_name">
         </activity>
         <activity
+            android:name="com.ap.collegespacev2.Bookmarks"
+            android:label="@string/app_name">
+        </activity>
+        <activity
             android:name="com.ap.collegespacev2.Calculator"
             android:label="@string/app_name">
         </activity>

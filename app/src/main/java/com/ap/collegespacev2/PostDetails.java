@@ -79,9 +79,10 @@ public class PostDetails extends ActionBarActivity
     {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.details, menu);
-        SharedPreferences pref = getSharedPreferences("PREFERENCE_APP", 0);
-        String favs = pref.getString("Favs" , "-1");
-        if (favs.contains(aID))
+
+        SharedPreferences pref = getSharedPreferences("UPDATES_FAV", 0);
+        int favs = pref.getInt("id_" + aID , 0);
+        if (favs != 0)
         {
             isPostFav = true;
             MenuItem nofav = menu.findItem(R.id.menu_not_fav);
@@ -129,20 +130,12 @@ public class PostDetails extends ActionBarActivity
 
     private void addFav()
     {
-        SharedPreferences pref = getSharedPreferences("PREFERENCE_APP", 0);
-        String favs = pref.getString("Favs" , null);
-        if (favs != null)
+        SharedPreferences pref = getSharedPreferences("UPDATES_FAV", 0);
+        int favs = pref.getInt("id_" + aID , 0);
+        if (favs == 0)
         {
-            String newfav = favs+aID+",";
             SharedPreferences.Editor editor = pref.edit();
-            editor.putString("Favs", newfav);
-            editor.commit();
-        }
-        else
-        {
-            String newfav = aID+",";
-            SharedPreferences.Editor editor = pref.edit();
-            editor.putString("Favs", newfav);
+            editor.putInt("id_" + aID, Integer.parseInt(aID));
             editor.commit();
         }
         Toast.makeText(this, getString(R.string.msg_fav_added) ,Toast.LENGTH_SHORT).show();
@@ -150,13 +143,14 @@ public class PostDetails extends ActionBarActivity
 
     private void removeFav()
     {
-        SharedPreferences pref = getSharedPreferences("PREFERENCE_APP", 0);
-        String favs = pref.getString("Favs" , null);
-        String actfav =aID+ ",";
-        String editfav = favs.replace(actfav, "");
-        SharedPreferences.Editor editor = pref.edit();
-        editor.putString("Favs", editfav);
-        editor.commit();
+        SharedPreferences pref = getSharedPreferences("UPDATES_FAV", 0);
+        int favs = pref.getInt("id_" + aID , 0);
+        if (favs != 0)
+        {
+            SharedPreferences.Editor editor = pref.edit();
+            editor.putInt("id_" + aID, 0);
+            editor.commit();
+        }
         Toast.makeText(this, getString(R.string.msg_fav_removed) ,Toast.LENGTH_SHORT).show();
     }
 
