@@ -42,5 +42,6 @@
     <string name="msg_fav_added">Added to Bookmark!</string>
     <string name="msg_fav_removed">Removed from Bookmark!</string>
 
+    <string name="bookmark_empty_msg">To Bookmark post click on ★ icon</string>
     <string name="secret_msg">I HATE YOU JAVA -- AP (C# Fan)\nI HATE YOU XML -- AP\nI HATE YOU ANDROID -- AP\nI HATE YOU AP -- God\nI HATE YOU TOO B-)\nI HATE THIS WORLD -- God (._.\")\nKisne bola tha banane ko? :p -- AP</string>
 </resources>

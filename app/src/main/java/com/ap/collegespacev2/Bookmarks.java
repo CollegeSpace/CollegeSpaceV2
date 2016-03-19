@@ -33,6 +33,7 @@ public class Bookmarks  extends BaseActivity
 
         mDBHelper = new DBHelper(this);
         mBookmarksList = (ListView)findViewById(R.id.posts_list_bookmarks);
+        mBookmarksList.setEmptyView(findViewById(R.id.posts_empty_bookmarks));
         UpdateList();
     }
 
