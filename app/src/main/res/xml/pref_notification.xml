@@ -25,6 +25,11 @@
         <CheckBoxPreference
             android:defaultValue="true"
             android:dependency="notify_me"
+            android:key="notify_broadcast_sound"
+            android:title="@string/setting_label_notify_sound" />
+        <CheckBoxPreference
+            android:defaultValue="true"
+            android:dependency="notify_me"
             android:key="notify_broadcast_vibrate"
             android:title="@string/setting_label_notify_vibrate" />
     </PreferenceCategory>

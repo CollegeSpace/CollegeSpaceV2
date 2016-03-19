@@ -29,6 +29,7 @@ public class jsonParser {
 
     private void getJSONFromURL(String url)
     {
+        Log.d("@getJSON", url);
         try
         {
             DefaultHttpClient httpClient = new DefaultHttpClient();
