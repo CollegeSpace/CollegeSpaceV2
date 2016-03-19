@@ -15,8 +15,13 @@ import android.webkit.WebView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.ap.collegespacev2.Helper.Misc;
 import com.ap.collegespacev2.Helper.PostViewer;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -48,9 +53,14 @@ public class PostDetails extends ActionBarActivity
         aUrl = getIntent().getStringExtra("post_url");
         aDate = getIntent().getStringExtra("post_date");
 
+
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle(aActionBar);
         getSupportActionBar().setHomeButtonEnabled(true);
+
+        //Add CSS script
+        try { aContent = aContent + Misc.getStringFromInputStream(getAssets().open("post_template.html")); }
+        catch (Exception e) { Log.e("@PostDetails", e.toString()); }
 
         //Relative date
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss", Locale.US);

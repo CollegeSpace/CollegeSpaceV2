@@ -16,6 +16,7 @@ import android.widget.ListView;
 import com.ap.collegespacev2.Adapter.PostsListAdapter;
 import com.ap.collegespacev2.Helper.ConnectionDetector;
 import com.ap.collegespacev2.Helper.DBHelper;
+import com.ap.collegespacev2.Helper.Misc;
 import com.ap.collegespacev2.Helper.UpdatesItem;
 import com.ap.collegespacev2.Helper.jsonParser;
 
@@ -34,7 +35,6 @@ public class Home extends BaseActivity
     SwipeRefreshLayout mSwipeRefreshLayout;
     PostsListAdapter mUpdatesAdapter;
     ListView mUpdatesListView;
-    AssetManager mAssetManager;
     Resources mResources;
 
     boolean InvalidateUpdatesList;
@@ -50,7 +50,6 @@ public class Home extends BaseActivity
         getSupportActionBar().setTitle(R.string.updatesTitle);
         mDBHelper = new DBHelper(this);
         mUpdatesListView = (ListView)findViewById(R.id.posts_list_updates);
-        mAssetManager = getAssets();
         mResources = getResources();
 
         /* SwipeRefreshLayout Settings */
@@ -155,22 +154,16 @@ public class Home extends BaseActivity
             try
             {
                 jsonParser jParser = new jsonParser();
-                JSONArray json = jParser.getJSONFromUrl(download_url);
+                JSONArray json = jParser.getJSONArrayFromUrl(download_url);
                 JSONObject feedObj;
                 UpdatesItem aItem;
 
-                String content = getStringFromInputStream(mAssetManager.open("post_template.html"));
                 for (int index = 0; index < json.length(); index++)
                 {
                     feedObj = json.getJSONObject(index);
-                    aItem = new UpdatesItem(
-                            feedObj.getInt(mResources.getString(R.string.wp_plugin_id)),
-                            feedObj.getString(mResources.getString(R.string.wp_plugin_title)),
-                            content + feedObj.getString(mResources.getString(R.string.wp_plugin_content)),
-                            feedObj.getString(mResources.getString(R.string.wp_plugin_link)),
-                            feedObj.getString(mResources.getString(R.string.wp_plugin_date)),
-                            feedObj.getString(mResources.getString(R.string.wp_plugin_modified))
-                    );
+                    aItem = Misc.getUpdateItemObject(mResources, feedObj);
+                    if (aItem == null)//Should not be the case
+                        continue;
                     mDBHelper.UpdatesAddItemIfNotExist(aItem);
                 }
             }
@@ -178,31 +171,5 @@ public class Home extends BaseActivity
             { Log.e("@json_exception", ex.getMessage()); }
             return null;
         }
-    }
-
-    private static String getStringFromInputStream(InputStream is) {
-        BufferedReader br = null;
-        StringBuilder sb = new StringBuilder();
-
-        String line;
-        try {
-
-            br = new BufferedReader(new InputStreamReader(is));
-            while ((line = br.readLine()) != null) {
-                sb.append(line);
-            }
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        } finally {
-            if (br != null) {
-                try {
-                    br.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-        }
-        return sb.toString();
     }
 }

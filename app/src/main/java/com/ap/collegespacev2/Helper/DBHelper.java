@@ -75,6 +75,18 @@ public class DBHelper extends SQLiteOpenHelper
         return status;
     }
 
+    public boolean UpdatesDeleteItemIfExist(int id)
+    {
+        if (UpdatesIDExist(id))
+        {
+            SQLiteDatabase db = this.getReadableDatabase();
+            db.rawQuery("DELETE FROM " + TABLE_UPDATES_NAME
+                    + " WHERE " + TABLE_UPDATES_KEY + "=" + Integer.toString(id), null);
+            return true;
+        }
+        return false;
+    }
+
     public boolean UpdatesAddItemIfNotExist(UpdatesItem aItem)
     {
         if (!UpdatesIDExist(aItem.getID()))

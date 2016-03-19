@@ -9,6 +9,7 @@ import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.json.JSONArray;
 import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -22,12 +23,11 @@ import java.io.UnsupportedEncodingException;
 public class jsonParser {
 
     static InputStream is = null;
-    static JSONArray jObj = null;
     static String json = "";
 
     public jsonParser(){ }
 
-    public JSONArray getJSONFromUrl(String url)
+    private void getJSONFromURL(String url)
     {
         try
         {
@@ -51,12 +51,29 @@ public class jsonParser {
                 sb.append(line + "n");
             is.close();
             json = sb.toString();
+
+            //Sometimes it shows some warnings, so parse it out
+            int index1 = json.indexOf('[');
+            int index2 = json.indexOf('{');
+            if (index1 != -1)
+                index2 = Math.min(index1, index2);
+            json = json.substring(index2);
         }
         catch (Exception e) { Log.e("Buffer Error", "Error converting result " + e.toString()); }
+    }
 
-        try { jObj = new JSONArray(json); }
-        catch (JSONException e) { Log.e("JSON Parser", "Error parsing data " + e.toString()); }
-        return jObj;
+    public JSONArray getJSONArrayFromUrl(String url)
+    {
+        try { getJSONFromURL(url); return new JSONArray(json); }
+        catch (JSONException e) { Log.e("@JSONArrayParser", "Error parsing data " + e.toString()); }
+        return null;
+    }
+
+    public JSONObject getJSONObjectFromUrl(String url)
+    {
+        try { getJSONFromURL(url); return new JSONObject(json); }
+        catch (JSONException e) { Log.e("@JSONObjectParser", "Error parsing data " + e.toString()); }
+        return null;
     }
 }
 
