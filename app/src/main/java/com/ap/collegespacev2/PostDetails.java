@@ -32,12 +32,12 @@ import java.util.Locale;
  */
 public class PostDetails extends ActionBarActivity
 {
-    String aID;
-    String aContent;
-    String aUrl;
-    String aDate;
-    String aTitle;
-    String aActionBar;
+    String mID;
+    String mContent;
+    String mURL;
+    String mDate;
+    String mTitle;
+    String mActionBar;
     boolean isPostFav = false;
 
     @Override
@@ -46,42 +46,42 @@ public class PostDetails extends ActionBarActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_post);
 
-        aActionBar = getIntent().getStringExtra("post_title_bar");
-        aTitle = getIntent().getStringExtra("post_title");
-        aID = getIntent().getStringExtra("post_id");
-        aContent = getIntent().getStringExtra("post_content");
-        aUrl = getIntent().getStringExtra("post_url");
-        aDate = getIntent().getStringExtra("post_date");
+        mActionBar = getIntent().getStringExtra("post_title_bar");
+        mTitle = getIntent().getStringExtra("post_title");
+        mID = getIntent().getStringExtra("post_id");
+        mContent = getIntent().getStringExtra("post_content");
+        mURL = getIntent().getStringExtra("post_url");
+        mDate = getIntent().getStringExtra("post_date");
 
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setTitle(aActionBar);
+        getSupportActionBar().setTitle(mActionBar);
         getSupportActionBar().setHomeButtonEnabled(true);
 
         //Add CSS script
-        try { aContent = aContent + Misc.getStringFromInputStream(getAssets().open("post_template.html")); }
+        try { mContent = mContent + Misc.getStringFromInputStream(getAssets().open("post_template.html")); }
         catch (Exception e) { Log.e("@PostDetails", e.toString()); }
 
         //Relative date
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss", Locale.US);
         try
         {
-            Date ddate = formatter.parse(aDate);
+            Date ddate = formatter.parse(mDate);
             long millis = ddate.getTime();
-            aDate = DateUtils.getRelativeTimeSpanString(millis, System.currentTimeMillis(),
+            mDate = DateUtils.getRelativeTimeSpanString(millis, System.currentTimeMillis(),
                     DateUtils.SECOND_IN_MILLIS).toString();
         }
         catch(ParseException e) { }
 
         //Load Data
-        ((TextView)findViewById(R.id.post_date)).setText(aDate);
-        ((TextView)findViewById(R.id.post_title)).setText(aTitle);
+        ((TextView)findViewById(R.id.post_date)).setText(mDate);
+        ((TextView)findViewById(R.id.post_title)).setText(mTitle);
 
         //Load Post Content
         WebView canvas = (WebView)findViewById(R.id.post_content);
         canvas.setWebViewClient(new PostViewer());
         canvas.setBackgroundColor(0xffeeeeee);//Android's default background color
-        canvas.loadData(aContent, "text/html", "utf-8");
+        canvas.loadData(mContent, "text/html", "utf-8");
     }
 
     @Override
@@ -91,7 +91,7 @@ public class PostDetails extends ActionBarActivity
         inflater.inflate(R.menu.details, menu);
 
         SharedPreferences pref = getSharedPreferences("UPDATES_FAV", 0);
-        int favs = pref.getInt("id_" + aID , 0);
+        int favs = pref.getInt("id_" + mID , 0);
         if (favs != 0)
         {
             isPostFav = true;
@@ -120,7 +120,7 @@ public class PostDetails extends ActionBarActivity
                 return true;
             case R.id.menu_web:
                 Intent i = new Intent(Intent.ACTION_VIEW);
-                i.setData(Uri.parse(aUrl));
+                i.setData(Uri.parse(mURL));
                 startActivity(i);
                 return true;
             case R.id.menu_fav:
@@ -141,11 +141,11 @@ public class PostDetails extends ActionBarActivity
     private void addFav()
     {
         SharedPreferences pref = getSharedPreferences("UPDATES_FAV", 0);
-        int favs = pref.getInt("id_" + aID , 0);
+        int favs = pref.getInt("id_" + mID , 0);
         if (favs == 0)
         {
             SharedPreferences.Editor editor = pref.edit();
-            editor.putInt("id_" + aID, Integer.parseInt(aID));
+            editor.putInt("id_" + mID, Integer.parseInt(mID));
             editor.commit();
         }
         Toast.makeText(this, getString(R.string.msg_fav_added) ,Toast.LENGTH_SHORT).show();
@@ -154,11 +154,11 @@ public class PostDetails extends ActionBarActivity
     private void removeFav()
     {
         SharedPreferences pref = getSharedPreferences("UPDATES_FAV", 0);
-        int favs = pref.getInt("id_" + aID , 0);
+        int favs = pref.getInt("id_" + mID , 0);
         if (favs != 0)
         {
             SharedPreferences.Editor editor = pref.edit();
-            editor.putInt("id_" + aID, 0);
+            editor.putInt("id_" + mID, 0);
             editor.commit();
         }
         Toast.makeText(this, getString(R.string.msg_fav_removed) ,Toast.LENGTH_SHORT).show();
@@ -168,7 +168,7 @@ public class PostDetails extends ActionBarActivity
     {
         Intent sendIntent = new Intent();
         sendIntent.setAction(Intent.ACTION_SEND);
-        sendIntent.putExtra(Intent.EXTRA_TEXT, Html.fromHtml(aTitle) + "\n" + aUrl);
+        sendIntent.putExtra(Intent.EXTRA_TEXT, Html.fromHtml(mTitle) + "\n" + mURL);
         sendIntent.setType("text/plain");
         startActivity(Intent.createChooser(sendIntent, getString(R.string.action_share)));
     }
