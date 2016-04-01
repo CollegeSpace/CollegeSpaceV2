@@ -58,6 +58,7 @@ public class Calculator  extends BaseActivity
         //load Canvas settings
         mCanvas = (WebView)findViewById(R.id.marks_canvas);
         mCanvas.setWebViewClient(new PostViewer());
+        mCanvas.getSettings().setJavaScriptEnabled(true);
         mCanvas.setBackgroundColor(0xffeeeeee);//Android's default background color
         mCanvas.loadData(mContent, "text/html", "utf-8");
     }
