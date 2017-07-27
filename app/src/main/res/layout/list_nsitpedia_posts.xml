@@ -42,6 +42,11 @@
     android:layout_height="wrap_content"
     android:text="Title"
     android:textSize="45sp"/>
+    <ImageView
+        android:layout_gravity="center"
+        android:id="@+id/ivFeaturedImage"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
 
     <TextView
         android:id="@+id/tvDescription"

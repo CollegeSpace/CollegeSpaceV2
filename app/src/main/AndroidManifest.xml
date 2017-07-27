@@ -22,22 +22,22 @@
         android:theme="@style/BaseTheme">
         <activity
             android:name=".Home"
-            android:label="@string/app_name"></activity>
+            android:label="@string/app_name" />
         <activity
             android:name=".Settings"
-            android:label="@string/app_name"></activity>
+            android:label="@string/app_name" />
         <activity
             android:name=".NSITulator"
-            android:label="@string/app_name"></activity>
+            android:label="@string/app_name" />
         <activity
             android:name=".Bookmarks"
-            android:label="@string/app_name"></activity>
+            android:label="@string/app_name" />
         <activity
             android:name=".Calculator"
-            android:label="@string/app_name"></activity>
+            android:label="@string/app_name" />
         <activity
             android:name=".BaseActivity"
-            android:label="@string/app_name"></activity>
+            android:label="@string/app_name" />
         <activity
             android:name=".Launcher"
             android:label="@string/app_name">
@@ -50,7 +50,7 @@
         <activity
             android:name=".PostDetails"
             android:configChanges="keyboardHidden|orientation|screenSize"
-            android:theme="@style/ThemeFading"></activity>
+            android:theme="@style/ThemeFading" />
 
         <receiver
             android:name=".Gcm.GcmBroadcastReceiver"
@@ -68,7 +68,10 @@
 
         <service android:name=".Gcm.GcmIntentService" />
 
-        <activity android:name=".NsitPediaActivity"></activity>
+        <activity android:name=".NsitPediaActivity" />
+        <activity android:name=".NSITpediaPostDetails"
+            android:parentActivityName=".NsitPediaActivity"
+            android:theme="@style/ThemeFading"></activity>
     </application>
 
 </manifest>
