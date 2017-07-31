@@ -25,9 +25,10 @@ public class DBHelper extends SQLiteOpenHelper
     public static final String TABLE_UPDATES_DATE = "date";
     public static final String TABLE_UPDATES_MODIFIED = "modified";
 
+
     public DBHelper(Context context)
     {
-        super(context, DATABASE_NAME, null, 1);
+        super(context, DATABASE_NAME, null, 2);
     }
 
     @Override
@@ -40,6 +41,7 @@ public class DBHelper extends SQLiteOpenHelper
                 TABLE_UPDATES_LINK + " TEXT, " +
                 TABLE_UPDATES_DATE + " TEXT, " +
                 TABLE_UPDATES_MODIFIED + " TEXT)");
+        db.execSQL(NSITpediaTable.CMD_CREATE_TABLE);
         Log.i("DBHelper", "onCreate()");
     }
 

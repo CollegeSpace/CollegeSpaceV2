@@ -26,7 +26,8 @@ public class NSITpediaPostDetails extends ActionBarActivity {
     TextView tvTitle ;
     WebView  webView ;
     ImageView ivFeaturedImage ;
-    String link  , title;
+    String link  , title ;
+    Integer id ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,8 +44,8 @@ public class NSITpediaPostDetails extends ActionBarActivity {
         String featured_image = getIntent().getStringExtra("featured_image") ;
         String content = getIntent().getStringExtra("content") ;
         String author = getIntent().getStringExtra("author") ;
-         link  = getIntent().getStringExtra("link") ;
-
+        link  = getIntent().getStringExtra("link") ;
+        id = getIntent().getIntExtra("id" , 0) ;
 
         tvTitle.setText(title);
         webView.setWebViewClient(new PostViewer());

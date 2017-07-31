@@ -24,9 +24,9 @@ public class NsitPediaAdapter extends RecyclerView.Adapter<NsitPediaAdapter.Post
 
     ArrayList<NpediaPosts> arrayListPosts ;
     Context mContext ;
-    onItemCLickedListener onItemCLickedListener ;
+    OnItemCLickedListener onItemCLickedListener;
 
-    public NsitPediaAdapter(ArrayList<NpediaPosts> arrayListPosts, Context mContext , onItemCLickedListener oicl) {
+    public NsitPediaAdapter(ArrayList<NpediaPosts> arrayListPosts, Context mContext , OnItemCLickedListener oicl) {
         this.arrayListPosts = arrayListPosts;
         this.mContext = mContext;
         this.onItemCLickedListener = oicl ;
@@ -36,7 +36,7 @@ public class NsitPediaAdapter extends RecyclerView.Adapter<NsitPediaAdapter.Post
         this.arrayListPosts = arrayListPosts ;
         notifyDataSetChanged();
     }
-    public interface onItemCLickedListener{
+    public interface OnItemCLickedListener {
         void onItemCLicked(View view , NpediaPosts thisPost);
     }
     @Override
@@ -52,14 +52,22 @@ public class NsitPediaAdapter extends RecyclerView.Adapter<NsitPediaAdapter.Post
         holder.tvTitle.setText(thisPost.getTitle());
         holder.tvDescription.setText(Html.fromHtml(thisPost.getExcerpt()));
         holder.tvAuthor.setText(thisPost.getAuthor().getUsername());
+        if(thisPost.getAuthor().getAvatar().equals("avatar")) {
+            Glide.with(mContext)
+                    .load(R.drawable.ic_person)
+                    .into(holder.ivAvatar);
+        }else{
+            Glide.with(mContext)
+                    .load(thisPost.getAuthor().getAvatar())
+                    .into(holder.ivAvatar);
+        }
 
-        Glide.with(mContext)
-                .load(thisPost.getAuthor().getAvatar())
-                .into(holder.ivAvatar);
+        if(!thisPost.getFeatured_image().getGuid().equals("guid")){
+            Glide.with(mContext)
+                    .load(thisPost.getFeatured_image().getGuid())
+                    .into(holder.ivFeaturedImage) ;
 
-        Glide.with(mContext)
-                .load(thisPost.getFeatured_image().getGuid())
-                .into(holder.ivFeaturedImage) ;
+        }
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
