@@ -173,6 +173,7 @@ public class BaseActivity extends ActionBarActivity
             switch (position)
             {
                 case 0: toStart = new Intent(BaseActivity.this, Home.class);        break;
+                case 1  : toStart = new Intent(BaseActivity.this , NsitPediaActivity.class) ; break ;
                 case 2: toStart = new Intent(BaseActivity.this, Bookmarks.class);   break;
                 case 4: toStart = new Intent(BaseActivity.this, NSITulator.class);  break;
                 case 5: toStart = new Intent(BaseActivity.this, Settings.class);    break;
