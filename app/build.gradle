@@ -2,8 +2,8 @@ apply plugin: 'com.android.application'
 apply plugin: 'com.google.gms.google-services'
 
 android {
-    compileSdkVersion 'Google Inc.:Google APIs:21'
-    buildToolsVersion "22.0.1"
+    compileSdkVersion 21
+    buildToolsVersion "25.0.0"
 
     defaultConfig {
         applicationId "com.ap.collegespacev2"
